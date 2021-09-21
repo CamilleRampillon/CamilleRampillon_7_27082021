@@ -1,0 +1,17 @@
+body {
+    max-width: 1240px;
+    background-color: $primaryBackground;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    
+}
