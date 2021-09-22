@@ -1,27 +1,29 @@
-import { recipes } from "./recipes";
-import { pageBuild } from "./page__rebuild";
+import { recipesList, pageBuild } from "./page__rebuild";
 
-let recipes2 = recipes;
 export let recipesFilter = function (value) {
-  
-  recipes2 = recipes2.filter((recipe) =>
-  recipe.name.toLowerCase().includes(value) ||
-  recipe.appliance.toLowerCase().includes(value) ||
-  recipe.description.toLowerCase().includes(value)
-  );
-  for (const recipe in recipes) {
-    for (const ingredient in recipes[recipe].ingredients) {
-      if (recipes[recipe].ingredients[ingredient].ingredient.toLowerCase().includes(value)) {
-        recipes2.push(recipes[recipe]);
-      }
+  let recipesList2 = [];
+  recipesList.forEach((recipe) => {
+    const name = recipe.name.toLowerCase()
+    const appliance = recipe.appliance.toLowerCase()
+    const description = recipe.description.toLowerCase()
+    const ustensils = recipe.ustensils
+    const ingredients = recipe.ingredients
+    if (name.includes(value)||appliance.includes(value)||description.includes(value)) {
+      recipesList2.push(recipe)
     }
-    for (const ustensil in recipes[recipe].ustensils) {
-      if (recipes[recipe].ustensils[ustensil].toLowerCase().includes(value)) {
-        recipes2.push(recipes[recipe]);
+    ustensils.forEach((ustensil) => {
+      const ustensilLower = ustensil.toLowerCase()
+      if (ustensilLower.includes(value)) {
+        recipesList2.push(recipe)
       }
-    }
-  }
-
-  recipes2 = Array.from(new Set(recipes2));
-  pageBuild(recipes2);
+    })
+    ingredients.forEach((ingredient) => {
+      const ingredientLower = ingredient.ingredient.toLowerCase()
+      if (ingredientLower.includes(value)) {
+        recipesList2.push(recipe)
+      }
+    })
+  })
+  recipesList2 = Array.from(new Set(recipesList2))
+  pageBuild(recipesList2)
 }

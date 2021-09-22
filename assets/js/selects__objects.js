@@ -1,13 +1,10 @@
 import { customisation } from "./custom__selects";
 import { keySearch } from "./search__function";
 const divSelects = document.querySelector('.selects');
-
-let ingredientsArray=["Ingredients"];
-let applianceArray=["Appareils"];
-let ustensilArray=["Ustensiles"];
-
+let ingredientsArray = [];
+let applianceArray = [];
+let ustensilArray = [];
 export let categories = [];
-
 export const optionsDefault = function (value) {
   for (var i = 0; i < value.ingredients.length; i++) {
       ingredientsArray.push(value.ingredients[i].ingredient);
