@@ -1,14 +1,17 @@
 .selects{
-  margin-top: 20px;
   width: 100%;
   height: auto;
   display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .custom-select{
   min-width: 180px;
   max-width: 250px;
   height: 70px;
   margin-right: 15px;
+  margin-top: 20px;
   position: relative;
   border-radius: 5px;
   display: flex;
@@ -29,15 +32,14 @@
 .select-selected{
   border-radius: 5px;
   color:$fontDark;
-  
 }
-.ingredient{
+.ingredients{
   background-color: $ingredientColor;
 }
 .appliance{
   background-color: $applianceColor;
 }
-.ustensil{
+.ustensils{
   background-color: $ustensilColor;
 }
 .select-selected:after{
@@ -88,4 +90,9 @@ width: 1000px;
   background-color:rgba(0, 0, 0, 0.3);
   border-radius : 5px;
   color:$fontLight;
+}
+@media screen and (min-width: 1240px){
+  .selects{
+    justify-content: flex-start;
+  }
 }

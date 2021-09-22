@@ -18,14 +18,14 @@ export let Recipe = function (name){
     this.ustensils = "ustensils";
     this.getInfo = function(){
         valueRecipe = {
-            "recipeId" : this.id,
-            "name" : this.name,
-            "servings" : this.servings,
-            "ingredients": this.ingredients,
-            "time" : this.time,
-            "description" : this.description,
-            "appliance" : this.appliance,
-            "ustensils" : this.ustensils
+            recipeId: this.id,
+            name: this.name,
+            servings: this.servings,
+            ingredients: this.ingredients,
+            time: this.time,
+            description: this.description,
+            appliance: this.appliance,
+            ustensils: this.ustensils,
         }
         cards(valueRecipe);
         optionsDefault(valueRecipe);

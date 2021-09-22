@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
-    "sass": "sass ./assets/sass/main.scss:./public/css/style.css --style compressed --watch",
-    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+    "dev": "webpack"
   },
   "repository": {
     "type": "git",

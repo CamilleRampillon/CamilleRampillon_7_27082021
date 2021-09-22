@@ -1,4 +1,4 @@
-.fiche{
+.card{
     margin-top: 20px;
     width: 100%;
     height: auto;
@@ -49,7 +49,8 @@
         justify-content: space-between;
         width: 95%;
         height: 39%;
-        margin-inline: auto;
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 2%;
         
         & > *{
@@ -80,4 +81,33 @@
     & > *{
         flex: 30%;
     } 
+}
+
+@media screen and (min-width: 768px){
+    .card {
+        & > *{
+            flex: 40%;
+        } 
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .card{
+        justify-content: center;
+        & > *{
+            flex: 30%;
+        }
+    }
+}
+@media screen and (min-width: 1240px){
+    .card{
+        justify-content: space-between;
+        & > *{
+            flex: 30%;
+        }
+        &__container{
+            margin: 0;
+            margin-top: 2%;
+        }
+    }
 }
