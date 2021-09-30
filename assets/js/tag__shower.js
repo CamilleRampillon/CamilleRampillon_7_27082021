@@ -7,29 +7,29 @@ const search = document.querySelector("#search");
 
 let tag;
 
-export const tagsShowerFromTag = function (categorie, triValue) {
+export const tagsShowerFromTag = function (categorie, sortValue) {
   const tagSearch = document.querySelector("#tagBySearch");
   tagSearch.innerHTML="";
   tag = document.querySelector("#tagByTag");
-  tagsShower(categorie, triValue);
+  tagsShower(categorie, sortValue);
 }
 
-export const tagsShowerFromSearch = function (categorie, triValue) {
+export const tagsShowerFromSearch = function (categorie, sortValue) {
   tag = document.querySelector("#tagBySearch");
-  tagsShower(categorie, triValue);
+  tagsShower(categorie, sortValue);
 }
 
-function tagsShower(categorie, triValue) {
-  let trivalue = triValue.split(" ");
-  trivalue = trivalue.join("-");
-  if (trivalue.includes("(")) {
-    trivalue = trivalue.split("(");
-    trivalue = trivalue[0] + trivalue[1];
-    trivalue = trivalue.split(")");
-    trivalue = trivalue[0];
+function tagsShower(categorie, sortValue) {
+  let sortvalue = sortValue.split(" ");
+  sortvalue = sortvalue.join("-");
+  if (sortvalue.includes("(")) {
+    sortvalue = sortvalue.split("(");
+    sortvalue = sortvalue[0] + sortvalue[1];
+    sortvalue = sortvalue.split(")");
+    sortvalue = sortvalue[0];
   }
   
-  tag.innerHTML += `<span class="tags" id="tags${categorie}${trivalue}"><span class="tag ${categorie}" id="tag${categorie}"><span>${triValue}</span><i class ="far fa-times-circle closeBtn" id="btn${categorie}btn${trivalue}"></i></span></span>`;
+  tag.innerHTML += `<span class="tags" id="tags${categorie}${sortvalue}"><span class="tag ${categorie}" id="tag${categorie}"><span>${sortValue}</span><i class ="far fa-times-circle closeBtn" id="btn${categorie}btn${sortvalue}"></i></span></span>`;
 
   closeBtn = document.querySelectorAll(".closeBtn");
   closeBtn.forEach((btn) =>

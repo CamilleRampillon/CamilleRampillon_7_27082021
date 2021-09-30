@@ -1,27 +1,36 @@
 import { recipes } from "./recipes";
 import { pageBuild } from "./page__rebuild";
 
-let recipes2 = recipes;
-export let recipesFilter = function (value) {
-  
-  recipes2 = recipes2.filter((recipe) =>
-  recipe.name.toLowerCase().includes(value) ||
-  recipe.appliance.toLowerCase().includes(value) ||
-  recipe.description.toLowerCase().includes(value)
-  );
-  for (const recipe in recipes) {
-    for (const ingredient in recipes[recipe].ingredients) {
-      if (recipes[recipe].ingredients[ingredient].ingredient.toLowerCase().includes(value)) {
-        recipes2.push(recipes[recipe]);
-      }
-    }
-    for (const ustensil in recipes[recipe].ustensils) {
-      if (recipes[recipe].ustensils[ustensil].toLowerCase().includes(value)) {
-        recipes2.push(recipes[recipe]);
-      }
-    }
+//create an array with the id of every recipes and in value the text of searched fields
+//reduce() => return an array of selected elements (here: recipe's id, in value: the searched elements )
+//map() => return an array of specific value (here: the list of ingredients)
+//flat() => return an array where all the sub arrays are in the same level
+//toString() => return a string of array
+var recipes2 = recipes.reduce(function(acc, curr){
+  acc.push({
+    id: curr.id,
+    value: [
+    curr.appliance,
+    curr.description,
+    curr.name,
+    curr.ustensils,
+    curr.ingredients.map(function(value){
+      return value.ingredient;
+    })
+    ].flat().toString()
   }
+)
+  return acc ;
+}, [])
 
-  recipes2 = Array.from(new Set(recipes2));
-  pageBuild(recipes2);
+export let recipesFilter = function (string) {
+  // firstFilter = only the entries of the array recipes2 where we can find the string
+  const firstFilter = recipes2.filter(recipe => recipe.value.toLowerCase().includes(string));
+  let recipesArray=[];
+  firstFilter.forEach(element => {
+    const recipeFound = recipes.find(recipe => recipe.id === element.id);
+    recipesArray.push(recipeFound);
+  });
+  var recipesToSend = Array.from(new Set(recipesArray));
+  pageBuild(recipesToSend);
 }
