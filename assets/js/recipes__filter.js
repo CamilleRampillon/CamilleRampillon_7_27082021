@@ -26,11 +26,9 @@ var recipes2 = recipes.reduce(function(acc, curr){
 export let recipesFilter = function (string) {
   // firstFilter = only the entries of the array recipes2 where we can find the string
   const firstFilter = recipes2.filter(recipe => recipe.value.toLowerCase().includes(string));
-  let recipesArray=[];
-  firstFilter.forEach(element => {
-    const recipeFound = recipes.find(recipe => recipe.id === element.id);
-    recipesArray.push(recipeFound);
-  });
-  var recipesToSend = Array.from(new Set(recipesArray));
+  // recipesToSend = the full recipes corresponding to the id of the entries of firstFilter
+  let recipesToSend = recipes.filter(recipe => firstFilter.find(recipeFiltered => recipeFiltered.id === recipe.id));
+
+  recipesToSend = Array.from(new Set(recipesToSend));
   pageBuild(recipesToSend);
 }

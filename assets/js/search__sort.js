@@ -3,7 +3,7 @@ import { recipesFilter } from "./recipes__filter";
 import { pageBuild } from "./page__rebuild";
 import{ tagsShowerFromSearch} from "./tag__shower"
 import { categories } from "./selects__objects";
-
+// search in recipes by entrie in input
 export let searchSort = function (keySearch) {
   function testInput(regex, string) {
     if (regex.test(string)) {

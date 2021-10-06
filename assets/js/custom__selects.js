@@ -24,16 +24,14 @@ export let customisation = function () {
       selectSelected.setAttribute("value", "ustensils");
       selectItems.setAttribute("class", "select-items select-hide ustensils");
     }
-    selectSelected.innerHTML =
-      selectCopy.options[selectCopy.selectedIndex].innerHTML;
+    selectSelected.innerHTML = selectCopy.options[selectCopy.selectedIndex].innerHTML;
     customSelect[i].appendChild(selectSelected);
     for (let j = 1; j < selectCopy.length; j++) {
       const optionElement = document.createElement("div");
       optionElement.innerHTML = selectCopy.options[j].innerHTML;
       optionElement.addEventListener("click", trier);
       function trier() {
-        const selectOrigine =
-          this.parentNode.parentNode.getElementsByTagName("select")[0];
+        const selectOrigine = this.parentNode.parentNode.getElementsByTagName("select")[0];
         const selectOrigineCiblePrev = this.parentNode.previousSibling;
         for (let k = 0; k < selectOrigine.length; k++) {
           if (selectOrigine.options[k].innerHTML == this.innerHTML) {

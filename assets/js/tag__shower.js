@@ -20,6 +20,7 @@ export const tagsShowerFromSearch = function (categorie, sortValue) {
 }
 
 function tagsShower(categorie, sortValue) {
+  // transform all spaces and () by - for the id name
   let sortvalue = sortValue.split(" ");
   sortvalue = sortvalue.join("-");
   if (sortvalue.includes("(")) {
