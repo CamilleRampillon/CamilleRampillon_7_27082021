@@ -1,7 +1,7 @@
 import { recipesList, pageBuild } from "./page__rebuild";
 
 export let recipesFilter = function (value) {
-  let recipesList2 = [];
+  let recipesToSend = [];
   recipesList.forEach((recipe) => {
     const name = recipe.name.toLowerCase()
     const appliance = recipe.appliance.toLowerCase()
@@ -9,21 +9,21 @@ export let recipesFilter = function (value) {
     const ustensils = recipe.ustensils
     const ingredients = recipe.ingredients
     if (name.includes(value)||appliance.includes(value)||description.includes(value)) {
-      recipesList2.push(recipe)
+      recipesToSend.push(recipe)
     }
     ustensils.forEach((ustensil) => {
       const ustensilLower = ustensil.toLowerCase()
       if (ustensilLower.includes(value)) {
-        recipesList2.push(recipe)
+        recipesToSend.push(recipe)
       }
     })
     ingredients.forEach((ingredient) => {
       const ingredientLower = ingredient.ingredient.toLowerCase()
       if (ingredientLower.includes(value)) {
-        recipesList2.push(recipe)
+        recipesToSend.push(recipe)
       }
     })
   })
-  recipesList2 = Array.from(new Set(recipesList2))
-  pageBuild(recipesList2)
+  recipesToSend = Array.from(new Set(recipesToSend))
+  pageBuild(recipesToSend)
 }
