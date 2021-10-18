@@ -3,29 +3,33 @@ import { pageBuild } from "./page__rebuild";
 
 //create an array with the id of every recipes and in value the text of searched fields
 //reduce() => return an array of selected elements (here: recipe's id, in value: the searched elements )
+// addedRecipe = the new element with:
+// the id = the id of the basic recipe 
+// and a value = the elements we want of the basic recipe 
+// basicRecipe = the element where we reduce the elements
 //map() => return an array of specific value (here: the list of ingredients)
 //flat() => return an array where all the sub arrays are in the same level
 //toString() => return a string of array
-var recipes2 = recipes.reduce(function(acc, curr){
-  acc.push({
-    id: curr.id,
+var reducedArray = recipes.reduce(function(addedRecipe, basicRecipe){
+  addedRecipe.push({
+    id: basicRecipe.id,
     value: [
-    curr.appliance,
-    curr.description,
-    curr.name,
-    curr.ustensils,
-    curr.ingredients.map(function(value){
+    basicRecipe.appliance,
+    basicRecipe.description,
+    basicRecipe.name,
+    basicRecipe.ustensils,
+    basicRecipe.ingredients.map(function(value){
       return value.ingredient;
     })
     ].flat().toString()
   }
 )
-  return acc ;
+  return addedRecipe ;
 }, [])
 
 export let recipesFilter = function (string) {
-  // firstFilter = only the entries of the array recipes2 where we can find the string
-  const firstFilter = recipes2.filter(recipe => recipe.value.toLowerCase().includes(string));
+  // firstFilter = only the entries of the array reducedArray where we can find the string
+  const firstFilter = reducedArray.filter(recipe => recipe.value.toLowerCase().includes(string));
   // recipesToSend = the full recipes corresponding to the id of the entries of firstFilter
   let recipesToSend = recipes.filter(recipe => firstFilter.find(recipeFiltered => recipeFiltered.id === recipe.id));
 
